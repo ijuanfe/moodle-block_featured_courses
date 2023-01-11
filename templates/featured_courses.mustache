@@ -1,5 +1,5 @@
 {{!
-    This file is part of Moodle - http://moodle.org/
+    This file is part of Moodle - https://moodle.org/
 
     Moodle is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -12,37 +12,101 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+    along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 }}
 {{!
-    @template block_thumblinks_action/thumblinks_actions
+    @template   block_featured_courses/featured_courses
+    @copyright  2020 - CALL Learning - Laurent David <laurent@call-learning>
+    @author     2020 - CALL Learning - Laurent David <laurent@call-learning>
+    @author     2022 Juan Felipe Orozco Escobar <juanfe.ores@gmail.com>
 
-    This template renders the main content area for the mcms block.
+    Block content template for Featured Courses plugin.
+
+    Context variables required for this template:
+    * id                        Course ID
+    * fullname                  Course fullname
+    * shortname                 Course shortname
+    * idnumber                  Course idnumber
+    * summary                   Course summary
+    * summaryformat             Course format
+    * startdate                 Course start date
+    * enddate                   Course end date
+    * visible                   Is the course visible?
+    * showactivitydates         Can show course activity dates?
+    * showcompletionconditions  Can show course activity completion conditions?
+    * fullnamedisplay           Course fullname
+    * viewurl                   Course URL
+    * courseimage               Course image URL
+    * showshortname             Can show course shortname?
+    * coursecategory            Course category
 
     Example context (json):
-    {}
+    {
+        [
+            "id": "2",
+            "fullname": "Course Test 1",
+            "shortname": "ct1",
+            "idnumber": "ct1idn",
+            "summary": "Summary...",
+            "summaryformat": "1",
+            "startdate": "1672549200",
+            "enddate": "1704085200",
+            "visible": "1",
+            "showactivitydates": "1",
+            "showcompletionconditions": "1",
+            "fullnamedisplay": "Course Test 1",
+            "viewurl": "https://path/to/moodle/course/view.php?id=2",
+            "courseimage": ".../svg",
+            "showshortname": false,
+            "coursecategory": "Category 1",
+        ],
+        [
+            "id": "3",
+            "fullname": "Course Test 2",
+            "shortname": "ct2",
+            "idnumber": "ct2idn",
+            "summary": "Summary...",
+            "summaryformat": "1",
+            "startdate": "1673499600",
+            "enddate": "1705035600",
+            "visible": "1",
+            "showactivitydates": "1",
+            "showcompletionconditions": "1",
+            "fullnamedisplay": "Course Test 1",
+            "viewurl": "https://path/to/moodle/course/view.php?id=3",
+            "courseimage": ".../svg",
+            "showshortname": false,
+            "coursecategory": "Category 2",
+        ]
+    }
 }}
 
 <div id="block-featured-courses-{{uniqid}}" class="block-featured-courses block-cards">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             {{#courses}}
-                <div class="col col-md-4 pt-3 pt-md-0">
-                    <div class="thumbnail my-1 d-flex flex-column justify-content-start">
-                        <div class="course-image"
-                             style='background-image: url("{{{ courseimage}}}");'>
-                        </div>
-                        <div class="title p-1 text-primary font-weight-bolder text-truncate title p-2 text-primary flex-grow-1">{{ fullname }}</div>
-                        <div class="d-flex flex-row p-2 ">
-                            <div class="otherinfo text-muted font-italic flex-grow-1">
-                                {{#startdate}}{{#userdate}}{{.}},  {{#str}} strftimedate {{/str}}{{/userdate}}{{/startdate}}</div>
-                            <div class="link">
-                                <a class="btn btn-primary rounded-circle p-1" href="{{viewurl}}">{{#pix}}
-                                    t/right, core, {{#str}}viewcourse, block_featured_courses {{/str}}{{/pix}}</a>
+                    <div class="col-12 col-sm-6 col-xl-4 mb-3 p-1">
+                        <div class="card">
+                            <a href="{{viewurl}}">
+                                <div class="course-image"
+                                    style='background-image: url("{{{courseimage}}}");'>
+                                </div>
+                            </a>
+                            <div class="card-body p-2">
+                                <div class="text-primary text-truncate">
+                                    <a href="{{viewurl}}" class="text-decoration-none">{{fullname}}</a>
+                                </div>
+                                <div class="text-muted font-italic">
+                                    {{#startdate}}
+                                        {{#userdate}}
+                                            {{.}}, {{#str}}strftimedate{{/str}}
+                                        {{/userdate}}
+                                    {{/startdate}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <br>
             {{/courses}}
         </div>
     </div>

@@ -1,18 +1,15 @@
 .block_featured_courses .course-image {
     background-size: cover;
-    height: 70%;
+    height: 7rem;
     width: 100%;
-}
-.block_featured_courses .thumbnail {
-    height: 300px;
-}
-.block_featured_courses .link i {
-    width: 24px;
-    height: 24px;
+    background-position: center;
+    border-top-left-radius: calc(0.5rem - 1px);
+    border-top-right-radius: calc(0.5rem - 1px);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-/* To fix oval button. */
-.block_featured_courses .rounded-circle {
-    width: 2rem;
-    height: 2rem;
+.block_featured_courses .card {
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.125);
 }
